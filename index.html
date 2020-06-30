@@ -3,23 +3,58 @@
 <head>
 	<meta charset="utf-8">
 
+<!--- css & js -->
   <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
 
   <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
   <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 
+  <link rel="stylesheet" type="text/css" href="styles/styles-vbz.css">
+
+<!--- data -->
+
+  <script src='data/haltestellen.js' type="text/javascript"></script>
+  <script src='data/h_0.js' type="text/javascript"></script>
+  <script src='data/h_1.js' type="text/javascript"></script>
+  <script src='data/h_4.js' type="text/javascript"></script>
+  <script src='data/h_5.js' type="text/javascript"></script>
+  <script src='data/h_6.js' type="text/javascript"></script>
+  <script src='data/h_7.js' type="text/javascript"></script>
+  <script src='data/h_8.js' type="text/javascript"></script>
+  <script src='data/h_9.js' type="text/javascript"></script>
+  <script src='data/h_10.js' type="text/javascript"></script>
+  <script src='data/h_11.js' type="text/javascript"></script>
+  <script src='data/h_12.js' type="text/javascript"></script>
+  <script src='data/h_13.js' type="text/javascript"></script>
+  <script src='data/h_14.js' type="text/javascript"></script>
+  <script src='data/h_15.js' type="text/javascript"></script>
+  <script src='data/h_16.js' type="text/javascript"></script>
+  <script src='data/h_17.js' type="text/javascript"></script>
+  <script src='data/h_18.js' type="text/javascript"></script>
+  <script src='data/h_19.js' type="text/javascript"></script>
+  <script src='data/h_20.js' type="text/javascript"></script>
+  <script src='data/h_21.js' type="text/javascript"></script>
+  <script src='data/h_22.js' type="text/javascript"></script>
+  <script src='data/h_23.js' type="text/javascript"></script>
 </head>
 
 
 <body>
 
+<!--- banner-->
+  <div class="bannerimage">
+    <div class="bannertext">
+      <h1>Verkehrsflüsse VBZ</h1>
+    </div>
+  </div>
 
-  <div id='map' style='width: 800px; height: 600px;'></div>
+
+<!--- map object-->
+  <div id='map' style='width: 100%; height: 80%;'></div>
   <script>
 
 
-    var bounds =
 
 
     mapboxgl.accessToken = 'pk.eyJ1IjoiYm91bnRhbiIsImEiOiJpSXVpaU1BIn0.pzuLQeLdLb3bRoYeQNc9jA';
@@ -27,10 +62,10 @@
       container: 'map',
       center: [8.539261, 47.376166],
       zoom: 13,
-      minZoom: 10,
-      maxZoom: 16,
+      //minZoom: 10,
+      //maxZoom: 16,
       style: 'mapbox://styles/bountan/cjv50ji2u02u61fqsyujklffl',
-      maxBounds: [[8.411615, 47.326402], [8.664531, 47.449721]]
+      //maxBounds: [[8.411615, 47.326402], [8.664531, 47.449721]]
     });
 
 //scale
@@ -44,6 +79,51 @@ map.addControl(scale);
 map.addControl(new mapboxgl.FullscreenControl());
 
 
+map.on('load', function() {
+  map.addSource('h_test', { type: 'geojson', data: 'data/h_test.geojson'});
+  map.addLayer({
+'id': 'h_test',
+'source': 'h_test',
+});
+});
+
+
+map.on('load', function() {
+map.addSource('h_test', {
+'type': 'geojson',
+'data': {
+'type': 'Feature',
+'geometry': {
+'type': 'Polygon',
+'coordinates': [
+[
+[-67.13734351262877, 45.137451890638886],
+[-66.96466, 44.8097],
+[-68.03252, 44.3252],
+[-69.06, 43.98],
+[-70.11617, 43.68405],
+[-70.64573401557249, 43.090083319667144],
+[-70.75102474636725, 43.08003225358635],
+[-70.79761105007827, 43.21973948828747],
+[-70.98176001655037, 43.36789581966826],
+[-70.94416541205806, 43.46633942318431],
+[-71.08482, 45.3052400000002],
+[-70.6600225491012, 45.46022288673396],
+[-70.30495378282376, 45.914794623389355],
+[-70.00014034695016, 46.69317088478567],
+[-69.23708614772835, 47.44777598732787],
+[-68.90478084987546, 47.184794623394396],
+[-68.23430497910454, 47.35462921812177],
+[-67.79035274928509, 47.066248887716995],
+[-67.79141211614706, 45.702585354182816],
+[-67.13734351262877, 45.137451890638886]
+]
+]
+}
+}
+});
+
+});
 
   </script>
 

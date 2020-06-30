@@ -42,12 +42,10 @@ body, html {
     height: 100%;
 }
 
-.banner {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/bus.jpg");
-  /* quelle bild https://www.stadt-zuerich.ch/vbz/de/index/fahrplan.html */
+.bannerimage {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bus.jpg");
   height: 20%;
-
-  /* Position and center the image to scale nicely on all screens */
+/* quelle bild https://www.stadt-zuerich.ch/vbz/de/index/fahrplan.html */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -70,10 +68,6 @@ body, html {
 
 }
 
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <script src='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.js'></script>
-  <link href='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.css' rel='stylesheet' />
-
 #container{
 width: 560px;
 /*  height: 320px  */
@@ -82,9 +76,8 @@ font-size: 10px;
 }
 
 #map {
-    height: 600px;
-    width: 60%;
-    float: right;
+
+    float: left;
 }
 
 }
