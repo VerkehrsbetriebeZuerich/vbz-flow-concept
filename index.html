@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
 
   <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
@@ -33,10 +33,15 @@
       maxBounds: [[8.411615, 47.326402], [8.664531, 47.449721]]
     });
 
+//scale
 
-    var scale = L.control.scale();
-          scale.addTo(map);
+var scale = new mapboxgl.ScaleControl({
+maxWidth: 150,
+unit: 'metric'
+});
+map.addControl(scale);
 
+map.addControl(new mapboxgl.FullscreenControl());
 
 
 
