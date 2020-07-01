@@ -27,6 +27,23 @@
 
 <!--- map object-->
   <div id='map' style='width: 100%; height: 80%;'></div>
+
+<!--- slider overlay -->
+<div class="map-overlay top">
+<div class="map-overlay-inner">
+<h2>Stundenfilter</h2>
+<label id="month"></label>
+<input id="slider" type="range" min="0" max="3" step="1" value="0" />
+</div>
+<div class="map-overlay-inner">
+<div id="legend" class="legend">
+<div class="bar"></div>
+<div>Magnitude (m)</div>
+</div>
+</div>
+</div>
+
+
   <script>
 
 
@@ -42,6 +59,10 @@
       style: 'mapbox://styles/bountan/cjv50ji2u02u61fqsyujklffl',
       //maxBounds: [[8.411615, 47.326402], [8.664531, 47.449721]]
     });
+// stundenfilter
+
+
+
 
 //scale
 
@@ -54,6 +75,112 @@ map.addControl(scale);
 map.addControl(new mapboxgl.FullscreenControl());
 
 
+//NEW MAP
+map.addSource('timegroups', {
+'type': 'geojson',
+data: 'https://bountan.github.io/vbz-flow-concept/data/vbzjson.geojson'
+});
+
+
+var times = [
+'01',
+'02',
+'03',
+'04'
+];
+
+
+
+function filterBy(time) {
+var filters = ['==', 'time', time];
+map.setFilter('timegroups', filters);
+
+
+// Set the label to the month
+document.getElementById('time').textContent = times[time];
+}
+
+
+
+map.on('load', function() {
+
+
+  map.addSource('hourgroups', {
+  'type': 'geojson',
+  data: 'https://bountan.github.io/vbz-flow-concept/data/vbzjson.geojson'
+  });
+
+  map.addLayer({
+  'id': 'hourgroups',
+  'type': 'circle',
+  'source': 'hourgroups',
+  'paint': {
+
+    'line-width': [
+
+      'interpolate', ['linear'], ['zoom'],
+        13, ['/',   ['step',
+              ['get', 'Besetzung_Max'],
+              0.5, 0,
+              2, 15,
+              4, 150,
+              8, 500,
+              11, 1000,
+              15
+            ], 20],
+
+        15, ['/', ['step',
+              ['get', 'Besetzung_Max'],
+              0.5, 0,
+              2, 15,
+              4, 150,
+              8, 500,
+              11, 1000,
+              15
+            ], 0.75],
+      ],
+
+  'line-color': [
+  'step',
+  ['get', 'Auslastung_Mean'],
+  '#328abf', 0,
+  '#68c4a7', 0.1,
+  '#e1e85d', 0.2,
+  '#faac5f', 0.6,
+  '#d63e4f'
+  ],
+  }
+
+
+
+
+
+  });
+    });
+// Data courtesy of http://earthquake.usgs.gov/
+// Query for significant earthquakes in 2015 URL request looked like this:
+// http://earthquake.usgs.gov/fdsnws/event/1/query
+//    ?format=geojson
+//    &starttime=2015-01-01
+//    &endtime=2015-12-31
+//    &minmagnitude=6'
+//
+// Here we're using d3 to help us make the ajax request but you can use
+// Any request method (library or otherwise) you wish.
+
+/*
+
+'https://bountan.github.io/vbz-flow-concept/data/vbzjson.geojson',
+function(err, data) {
+if (err) throw err;
+ */
+
+// Create a month property value based on time
+// used to filter against.
+
+
+
+/*
 map.on('load', function() {
 map.addSource('route', {
 'type': 'geojson',
@@ -69,46 +196,6 @@ map.addLayer({
 'line-cap': 'round'
 },
 
-/*
-
-["step",
-    input: number,
-    stop_output_0: OutputType,
-    stop_input_1: number, stop_output_1: OutputType,
-    stop_input_n: number, stop_output_n: OutputType, ...
-]: OutputType
-
-
-
-'line-color': '#F7455D'
-
-
-  'step', ['get', 'Auslastung_Mean'],
-    '#4287f5', 0.2,
-    '#42f587', 0.4,
-    '#f5f542', 0.6,
-  ]
-
-'line-color': [
-'step',
-['get', 'point_count'],
-'#51bbd6',
-100,
-'#f1f075',
-750,
-'#f28cb1'
-],
-
-
-'line-width': [
-
-  'interpolate', ['linear'], ['zoom'],
-        12, ['/', ['get', 'Besetzung_Mean'], 40],
-        16, ['/', ['get', 'Besetzung_Mean'], 5],
-  ],
-
-
-*/
 'paint': {
 
   'line-width': [
@@ -135,14 +222,6 @@ map.addLayer({
           ], 0.75],
     ],
 
-
-
-
-
-
-
-// Use a get expression (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-get)
-// to set the line-color to a feature property value.
 'line-color': [
 'step',
 ['get', 'Auslastung_Mean'],
@@ -152,19 +231,11 @@ map.addLayer({
 '#faac5f', 0.6,
 '#d63e4f'
 ],
-
-
-
-
-
-
-
-
 }
 });
 });
 
-
+*/
 
 
 
