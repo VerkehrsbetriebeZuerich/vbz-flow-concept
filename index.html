@@ -107,13 +107,13 @@ map.on('load', function() {
     type: 'line',
     source: {
       type: 'geojson',
-      data: 'https://bountan.github.io/vbz-flow-concept/data/vbzjson_cut.geojson'
+      data: 'https://bountan.github.io/vbz-flow-concept/data/vbz_noline.geojson'
     },
     paint: {
         'line-width': [
           'interpolate', ['linear'], ['zoom'],
             13, ['/',   ['step',
-                  ['get', 'occmax'],
+                  ['get', 'occsum'],
                   0.5, 0,
                   2, 15,
                   4, 150,
@@ -122,7 +122,7 @@ map.on('load', function() {
                   15
                 ], 20],
             15, ['/', ['step',
-                  ['get', 'occmax'],
+                  ['get', 'occsum'],
                   0.5, 0,
                   2, 15,
                   4, 150,
