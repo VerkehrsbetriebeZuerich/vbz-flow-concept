@@ -25,7 +25,7 @@ a {
 }
 
 .colors {
-  background: linear-gradient(to right, #2dc4b2, #3bb3c3, #669ec4, #8b88b6, #a2719b, #aa5e79);
+  background: linear-gradient(to right, #328abf, #68c4a7, #e1e85d, #faac5f, #d63e4f);
   margin-bottom: 5px;
 }
 
@@ -34,7 +34,7 @@ a {
   display: inline-block;
   text-align: center;
 }
-
+/*
 button {
   background-color: #0066CC;
   border: none;
@@ -48,7 +48,7 @@ button {
   margin-right:-5px;
   margin-top:-5px;
 }
-
+*/
 button:hover {
 	background-color: #003E7D;
 	transition-duration:0.2s;
@@ -76,43 +76,6 @@ h2 {
 body, html {
     height: 100%;
 }
-.map-overlay {
-font: 12px/20px 'Helvetica', Arial, Helvetica, sans-serif;
-position: absolute;
-width: 25%;
-top: 190;
-left: 0;
-padding: 10px;
-}
-
-.map-overlay .map-overlay-inner {
-background-color: #fff;
-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-border-radius: 3px;
-padding: 10px;
-margin-bottom: 10px;
-}
-
-.map-overlay h2 {
-line-height: 24px;
-display: block;
-margin: 0 0 10px;
-}
-
-.map-overlay .legend .bar {
-height: 10px;
-width: 100%;
-background: linear-gradient(to right, #fca107, #7f3121);
-}
-
-.map-overlay input {
-background-color: transparent;
-display: inline-block;
-width: 100%;
-position: relative;
-margin: 0;
-cursor: ew-resize;
-}
 
 
 .bannerimage {
@@ -134,23 +97,12 @@ cursor: ew-resize;
   color: white;
 }
 
-#wrapper {
-    width = 2160px;
-    height: auto;
-    padding-top: 10px;
-
-}
-
-#container{
-width: 560px;
-/*  height: 320px  */
-float: left
-font-size: 10px;
-}
 
 #map {
-
+    position: absolute;
     float: left;
+    width: 100%;
+    height: 80%;
 }
 
 }
