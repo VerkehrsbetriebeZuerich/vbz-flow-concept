@@ -4,7 +4,7 @@
 
 a {
   text-decoration: none;
-  color: #2dc4b2;
+  color: #008fff;
 }
 
 #console {
@@ -28,31 +28,11 @@ a {
   background: linear-gradient(to right, #328abf, #68c4a7, #e1e85d, #faac5f, #d63e4f);
   margin-bottom: 5px;
 }
-.linethick {
 
+.thickline{
+  display: inline-block;
+  width: 20%
 }
-
-.thick1 {
-  height: 5%;
-  fill: #404040;
-}
-.thick2 {
-  height: 28%;
-  fill: #404040;
-}
-.thick3 {
-  height: 52%;
-  fill: #404040;
-}
-.thick4 {
-  height: 79%;
-  fill: #404040;
-}
-.thick5 {
-  height: 100%;
-  fill: #404040;
-}
-
 .label {
   display: inline-block;
   text-align: center;
@@ -62,10 +42,12 @@ a {
 .perc {
   width: 15%;
 }
+.vol{
+width: 18%;
 
-.vol {
-  width: 18%;
+
 }
+
 
 /*
 button {
