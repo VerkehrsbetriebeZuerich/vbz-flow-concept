@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+<meta charset="utf-8">
+<title>Traffic Flows VBZ</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 
-<!--- css & js -->
+
+<!--- libraries -->
   <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
 
-  <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
-  <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-
   <link rel="stylesheet" type="text/css" href="styles/styles-vbz.css">
 
-<!--- data -->
+  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
 
 <body>
@@ -29,156 +29,57 @@
   <div id='map' style='width: 100%; height: 80%;'></div>
 
 <!--- slider overlay -->
+
 <div class="map-overlay top">
-<div class="map-overlay-inner">
-<h2>Stundenfilter</h2>
-<label id="month"></label>
-<input id="slider" type="range" min="0" max="3" step="1" value="0" />
+  <div class="map-overlay-inner">
+      <h2>Stundenfilter</h2>
+        <label id="month"></label>
+        <input id="slider" type="range" min="0" max="3" step="1" value="0" />
+  </div>
+  <div class="map-overlay-inner">
+      <div id="legend" class="legend">
+        <div class="bar"></div>
+        <div>Auslastung</div>
 </div>
-<div class="map-overlay-inner">
-<div id="legend" class="legend">
-<div class="bar"></div>
-<div>Magnitude (m)</div>
-</div>
-</div>
+  </div>
 </div>
 
 
-  <script>
 
+<!-- map initialization -->
 
-
-
+<script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiYm91bnRhbiIsImEiOiJpSXVpaU1BIn0.pzuLQeLdLb3bRoYeQNc9jA';
     var map = new mapboxgl.Map({
       container: 'map',
       center: [8.539261, 47.376166],
       zoom: 14,
-      minZoom: 12,
-      maxZoom: 16,
+      //minZoom: 12,
+      //maxZoom: 16,
       style: 'mapbox://styles/bountan/cjv50ji2u02u61fqsyujklffl',
       //maxBounds: [[8.411615, 47.326402], [8.664531, 47.449721]]
     });
-// stundenfilter
 
+// map controls
+    var scale = new mapboxgl.ScaleControl({
+    maxWidth: 150,
+    unit: 'metric'
+    });
+    map.addControl(scale);
 
-
-
-//scale
-
-var scale = new mapboxgl.ScaleControl({
-maxWidth: 150,
-unit: 'metric'
-});
-map.addControl(scale);
-
-map.addControl(new mapboxgl.FullscreenControl());
-
+    map.addControl(new mapboxgl.FullscreenControl());
 
 //NEW MAP
-map.addSource('timegroups', {
-'type': 'geojson',
-data: 'https://bountan.github.io/vbz-flow-concept/data/vbzjson.geojson'
-});
-
-
-var times = [
-'01',
-'02',
-'03',
-'04'
-];
-
-
-
-function filterBy(time) {
-var filters = ['==', 'time', time];
-map.setFilter('timegroups', filters);
-
-
-// Set the label to the month
-document.getElementById('time').textContent = times[time];
-}
-
-
-
-map.on('load', function() {
-
-
-  map.addSource('hourgroups', {
-  'type': 'geojson',
-  data: 'https://bountan.github.io/vbz-flow-concept/data/vbzjson.geojson'
-  });
-
-  map.addLayer({
-  'id': 'hourgroups',
-  'type': 'line',
-  'source': 'hourgroups',
-  'paint': {
-
-    'line-width': [
-
-      'interpolate', ['linear'], ['zoom'],
-        13, ['/',   ['step',
-              ['get', 'Besetzung_Max'],
-              0.5, 0,
-              2, 15,
-              4, 150,
-              8, 500,
-              11, 1000,
-              15
-            ], 20],
-
-        15, ['/', ['step',
-              ['get', 'Besetzung_Max'],
-              0.5, 0,
-              2, 15,
-              4, 150,
-              8, 500,
-              11, 1000,
-              15
-            ], 0.75],
-      ],
-
-  'line-color': [
-  'step',
-  ['get', 'Auslastung_Mean'],
-  '#328abf', 0,
-  '#68c4a7', 0.1,
-  '#e1e85d', 0.2,
-  '#faac5f', 0.6,
-  '#d63e4f'
-  ],
-  }
+// based on earthquakes
 
 
 
 
 
-  });
-    });
-// Data courtesy of http://earthquake.usgs.gov/
-// Query for significant earthquakes in 2015 URL request looked like this:
-// http://earthquake.usgs.gov/fdsnws/event/1/query
-//    ?format=geojson
-//    &starttime=2015-01-01
-//    &endtime=2015-12-31
-//    &minmagnitude=6'
-//
-// Here we're using d3 to help us make the ajax request but you can use
-// Any request method (library or otherwise) you wish.
-
-/*
-
-'https://bountan.github.io/vbz-flow-concept/data/vbzjson.geojson',
-function(err, data) {
-if (err) throw err;
- */
-
-// Create a month property value based on time
-// used to filter against.
 
 
+
+</script>
 
 /*
 map.on('load', function() {
@@ -238,9 +139,6 @@ map.addLayer({
 */
 
 
-
-
-  </script>
 
 </body>
 
