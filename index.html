@@ -109,8 +109,13 @@ map.on('load', function() {
       type: 'geojson',
       data: 'https://bountan.github.io/vbz-flow-concept/data/vbz_test1.geojson'
     },
+    layout: {
+      'line-cap':'round',
+
+
+    },
     paint: {
-        'line-cap':'round',
+
         'line-width': [
           'interpolate', ['linear'], ['zoom'],
             13, ['/',   ['step',
