@@ -98,24 +98,7 @@
 
 map.on('load', function() {
 
-  map.addLayer({
-    id: 'haltestellen',
-    type: 'circle',
-    source: {
-      type: 'geojson',
-      data: 'https://bountan.github.io/vbz-flow-concept/data/haltestellen.geojson'
-    },
-    paint: {
-      'circle-radius': {
-      'base': 1.75,
-      'stops': [
-      [12, 2],
-      [22, 180]
-      ]
-      },
 
-
-  });
 
 
   map.addLayer({
@@ -177,7 +160,25 @@ map.on('load', function() {
   document.getElementById('active-hour').innerText = hour +'h';
 });
 
+map.addLayer({
+  id: 'haltestellen',
+  type: 'circle',
+  source: {
+    type: 'geojson',
+    data: 'https://bountan.github.io/vbz-flow-concept/data/haltestellen.geojson'
+  },
+  paint: {
+    'circle-color': '#00ffff',
+    'circle-radius': {
+    'base': 6,
+    'stops': [
+    [12, 5],
+    [16, 40]
+  ]
+    },
 
+}
+});
 
 /// POPUP ON CLICK
 map.on('click', 'vbzjson', function(e) {
@@ -187,6 +188,12 @@ new mapboxgl.Popup()
 .addTo(map);
 });
 
+map.on('click', 'haltestellen', function(e) {
+new mapboxgl.Popup()
+.setLngLat(e.lngLat)
+.setHTML(e.features[0].properties.name)
+.addTo(map);
+});
 // Change the cursor to a pointer when the mouse is over the states layer.
 map.on('mouseenter', 'vbzjson', function() {
 map.getCanvas().style.cursor = 'pointer';
