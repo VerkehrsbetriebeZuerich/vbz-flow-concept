@@ -180,7 +180,7 @@ map.addLayer({
 }
 });
 
-/// POPUP ON CLICK
+/// popup sections
 map.on('click', 'vbzjson', function(e) {
 new mapboxgl.Popup()
 .setLngLat(e.lngLat)
@@ -188,19 +188,30 @@ new mapboxgl.Popup()
 .addTo(map);
 });
 
+// popup stops
 map.on('click', 'haltestellen', function(e) {
 new mapboxgl.Popup()
 .setLngLat(e.lngLat)
 .setHTML(e.features[0].properties.name)
 .addTo(map);
 });
-// Change the cursor to a pointer when the mouse is over the states layer.
+// change cursor on hover sections
 map.on('mouseenter', 'vbzjson', function() {
 map.getCanvas().style.cursor = 'pointer';
 });
 
-// Change it back to a pointer when it leaves.
+// change cursor back sections
 map.on('mouseleave', 'vbzjson', function() {
+map.getCanvas().style.cursor = '';
+});
+
+// change cursor on hover stops
+map.on('mouseenter', 'haltestellen', function() {
+map.getCanvas().style.cursor = 'pointer';
+});
+
+// change cursor back stops
+map.on('mouseleave', 'haltestellen', function() {
 map.getCanvas().style.cursor = '';
 });
 });
