@@ -99,26 +99,26 @@
 map.on('load', function() {
 
   map.addSource('haltestellen', {
-type: 'geojson',
-data: 'https://bountan.github.io/vbz-flow-concept/data/haltestellen.geojson'
-});
+    type: 'geojson',
+    data: 'https://bountan.github.io/vbz-flow-concept/data/haltestellen.geojson'
+  });
 
-map.addLayer({
-'id': 'haltestellen',
-'type': 'circle',
-'source': 'haltestellen',
-'layout': {
-}
-'paint': {
-// make circles larger as the user zooms from z12 to z22
-'circle-radius': {
-'base': 1.75,
-'stops': [
-[12, 2],
-[22, 180]
-]
-},
-});
+  map.addLayer({
+    'id': 'haltestellen',
+    'type': 'circle',
+    'source': 'haltestellen',
+    'layout': {
+    }
+    'paint': {
+    // make circles larger as the user zooms from z12 to z22
+    'circle-radius': {
+    'base': 1.75,
+    'stops': [
+    [12, 2],
+    [22, 180]
+    ]
+    },
+  });
 
 
 
