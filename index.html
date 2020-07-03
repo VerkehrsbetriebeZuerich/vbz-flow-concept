@@ -162,7 +162,7 @@ map.on('load', function() {
 map.on('click', 'vbzjson', function(e) {
 new mapboxgl.Popup()
 .setLngLat(e.lngLat)
-.setHTML("Von"+e.features[0].properties.name_start+" bis <br>"+e.features[0].properties.name_ziel+":<br><b>"+e.features[0].properties.occsum+" Passagiere<br>"+e.features[0].properties.loadmean*100+"% durschnittliche Besetzung</b><br>in dieser Stunde")
+.setHTML("Von"+e.features[0].properties.name_start+" bis <br>"+e.features[0].properties.name_ziel+":<br><b>"+e.features[0].properties.occsum+" Passagiere<br>"+e.features[0].properties.loadmean*100+"% durchschnittliche Besetzung</b><br>in dieser Stunde")
 .addTo(map);
 });
 
