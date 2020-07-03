@@ -12,9 +12,6 @@
 
   <link rel="stylesheet" type="text/css" href="styles/styles-vbz.css">
 
-  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
-
-
 <body>
 
 <!--- banner-->
@@ -165,7 +162,7 @@ map.on('load', function() {
 map.on('click', 'vbzjson', function(e) {
 new mapboxgl.Popup()
 .setLngLat(e.lngLat)
-.setHTML(e.features[0].properties.name_start+"bis /n"+e.features[0].properties.name_ziel+":")
+.setHTML("Von"+e.features[0].properties.name_start+" bis <br>"+e.features[0].properties.name_ziel+":<br><b>"+e.features[0].properties.occsum+" Passagiere<br>"+e.features[0].properties.loadmean*100+"% durschnittliche Besetzung</b><br>in dieser Stunde")
 .addTo(map);
 });
 
