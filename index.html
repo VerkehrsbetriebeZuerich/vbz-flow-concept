@@ -114,7 +114,7 @@ map.on('load', function() {
     paint: {
         'line-offset': [
         'interpolate', ['linear'], ['zoom'],
-        13, 2,
+        12, 2,
         16, 15,
       ],
         'line-width': [
@@ -141,10 +141,10 @@ map.on('load', function() {
       'line-color': [
       'step',
       ['get', 'loadmean'],
-      '#99bcb6', 0.2,
-      '#d1d2b6', 0.4,
-      '#f2d3ad', 0.6,
-      '#e5b0ad', 0.8,
+      '#99bcb6', 20,
+      '#d1d2b6', 40,
+      '#f2d3ad', 60,
+      '#e5b0ad', 80,
       '#df748e'
       ],
     },
