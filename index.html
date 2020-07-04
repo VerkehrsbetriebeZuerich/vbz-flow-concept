@@ -194,7 +194,7 @@ new mapboxgl.Popup()
 map.on('click', 'haltestellen', function(e) {
 new mapboxgl.Popup()
 .setLngLat(e.lngLat)
-.setHTML(e.features[0].properties.name)
+.setHTML("Haltestelle<br><b>"+e.features[0].properties.name+"</b>")
 .addTo(map);
 });
 // change cursor on hover sections
