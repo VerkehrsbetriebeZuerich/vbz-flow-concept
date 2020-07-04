@@ -106,7 +106,8 @@ map.on('load', function() {
     type: 'line',
     source: {
       type: 'geojson',
-      data: 'https://bountan.github.io/vbz-flow-concept/data/vbz_test1.geojson'
+      //https://bountan.github.io/vbz-flow-concept/data/vbz_test1.geojson
+      data: 'https://bountan.github.io/vbz-flow-concept/data/vbz_test1.geojson',
     },
     layout: {
       'line-cap':'round',
@@ -169,8 +170,9 @@ map.addLayer({
   type: 'circle',
   source: {
     type: 'geojson',
+    //https://bountan.github.io/vbz-flow-concept/data/haltestellen.geojson
     data: 'https://bountan.github.io/vbz-flow-concept/data/haltestellen.geojson'
-  },
+    },
   paint: {
     'circle-color': '#888888',
     'circle-radius': [
