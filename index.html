@@ -80,10 +80,10 @@
       container: 'map',
       center: [8.539261, 47.376166],
       zoom: 14,
-      //minZoom: 12,
-      //maxZoom: 16,
+      minZoom: 12,
+      maxZoom: 16,
       style: 'mapbox://styles/bountan/cjv50ji2u02u61fqsyujklffl',
-      //maxBounds: [[8.411615, 47.326402], [8.664531, 47.449721]]
+      maxBounds: [[8.411615, 47.326402], [8.664531, 47.449721]]
     });
 
 // map controls
@@ -112,7 +112,11 @@ map.on('load', function() {
       'line-cap':'round',
     },
     paint: {
-
+        'line-offset': [
+        'interpolate', ['linear'], ['zoom'],
+        13, 5,
+        15, 2,
+      ],
         'line-width': [
           'interpolate', ['linear'], ['zoom'],
             13, ['/',   ['step',
