@@ -114,8 +114,8 @@ map.on('load', function() {
     paint: {
         'line-offset': [
         'interpolate', ['linear'], ['zoom'],
-        13, 5,
-        15, 2,
+        13, 2,
+        16, 15,
       ],
         'line-width': [
           'interpolate', ['linear'], ['zoom'],
@@ -173,13 +173,11 @@ map.addLayer({
   },
   paint: {
     'circle-color': '#888888',
-    'circle-radius': {
-    'base': 6,
-    'stops': [
-    [12, 5],
-    [16, 40]
-  ]
-    },
+    'circle-radius': [
+    'interpolate', ['linear'], ['zoom'],
+    13, 2,
+    16, 30,
+  ],
 
 }
 });
