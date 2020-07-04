@@ -14,6 +14,25 @@ a {
   padding: 10px 20px;
   background-color: white;
 }
+.filter-ctrl {
+position: absolute;
+top: 10px;
+right: 10px;
+z-index: 1;
+}
+
+.filter-ctrl input[type='text'] {
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+width: 100%;
+border: 0;
+background-color: #fff;
+margin: 0;
+color: rgba(0, 0, 0, 0.5);
+padding: 10px;
+box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+border-radius: 3px;
+width: 180px;
+}
 
 .session {
   margin-bottom: 20px;
@@ -25,7 +44,7 @@ a {
 }
 
 .colors {
-  background: linear-gradient(to right, #328abf, #68c4a7, #e1e85d, #faac5f, #d63e4f);
+  background: linear-gradient(to right, #99bcb6, #d1d2b6, #f2d3ad, #e5b0ad, #df748e);
   margin-bottom: 5px;
 }
 
