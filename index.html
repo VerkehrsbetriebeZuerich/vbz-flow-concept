@@ -51,11 +51,11 @@
     </div>
 
     <div class='row' >
-      <div class='label vol'>0</div>
-      <div class='label vol'>10</div>
-      <div class='label vol'>150</div>
-      <div class='label vol'>500</div>
-      <div class='label vol'>1000+</div>
+      <div class='label vol'>0 - 20</div>
+      <div class='label vol'>21 - 100</div>
+      <div class='label vol'>101 - 500</div>
+      <div class='label vol'>501 - 1500</div>
+      <div class='label vol'>1500+</div>
     </div>
 
     <div class='session' id='sliderbar'>
@@ -63,8 +63,15 @@
   <input id='slider' class='row' type='range' min='0' max='23' step='1' value='12' />
 </div>
   </div>
-  <p>Datenherkunft: <a href='https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd' target="_blank"'>Stadt Zürich Open Data</a></p>
-
+  <p>Diese Karte stellt die Benützung des Streckennetzes der VBZ and einem typischen Arbeitstag dar.
+    Jeder planmässig von Tram und Bus der VBZ befahrene Streckenabschnitt wird richtungsgetrennt dargestellt ("Rechtsverkehr!").
+    Die Strichfarbe stellt dar, wie voll die Fahrzeuge über die gesamte Stunde durschnittlich sind.
+    Die Strichbreite stellt dar, wieviele Passagiere auf diesem Abschnitt unterwegs sind.
+    Genauere Werte werden durch Anklicken angezeigt.
+    Die Werte basieren auf punktuellen Messungen der VBZ, die extrapoliert wurden.
+    Es besteht kein Anspruch auf Vollständigkeit oder Gültigkeit der publizierten Daten seitens der Autoren.</p>
+  <p>Datenherkunft: <a href='https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd' target="_blank">Stadt Zürich Open Data</a></p>
+  <p>Kontakt Autoren: <a href='mailto:ueli.isenschmid@gmail.com' target="_blank">Ueli Isenschmid</a>, <a href='https://www.linkedin.com/in/ueli-isenschmid/' target="_blank">Linkedin</a>
 
 
 </div>
@@ -83,7 +90,7 @@
     var map = new mapboxgl.Map({
       container: 'map',
       center: [8.539261, 47.376166],
-      zoom: 14,
+      zoom: 13,
       minZoom: 10,
       maxZoom: 16,
       style: 'mapbox://styles/bountan/cjv50ji2u02u61fqsyujklffl',
@@ -110,8 +117,8 @@ map.on('load', function() {
     type: 'line',
     source: {
       type: 'geojson',
-      //https://bountan.github.io/vbz-flow-concept/data/vbz_test1.geojson
-      data: 'https://bountan.github.io/vbz-flow-concept/data/vbz_test1.geojson',
+      //https://bountan.github.io/vbz-flow-concept/data/vbz.geojson
+      data: 'https://bountan.github.io/vbz-flow-concept/data/vbz.geojson',
     },
     layout: {
       'line-cap':'round',
