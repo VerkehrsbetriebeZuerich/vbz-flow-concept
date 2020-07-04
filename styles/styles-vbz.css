@@ -9,7 +9,7 @@ a {
 
 #console {
   position: absolute;
-  width: 240px;
+  width: 300px;
   margin: 10px;
   padding: 10px 20px;
   background-color: white;
@@ -44,7 +44,7 @@ width: 180px;
 }
 
 .colors {
-  background: linear-gradient(to right, #99bcb6, #d1d2b6, #f2d3ad, #e5b0ad, #df748e);
+  background: linear-gradient(to right, #2d8ac0, #559783, #add8a4, #e4ea9a, #fae08a, #f9ae60, #f26b44, #d83d51);
   margin-bottom: 5px;
 }
 
@@ -55,7 +55,7 @@ width: 180px;
 .label {
   display: inline-block;
   text-align: center;
-  font-size: 0.9em;
+  font-size: 0.7em;
 
 }
 .perc {
@@ -63,34 +63,8 @@ width: 180px;
 }
 .vol{
 width: 18%;
-
-
 }
 
-
-/*
-button {
-  background-color: #0066CC;
-  border: none;
-  color: white;
-  padding: 5px;
-  width: 50px;
-  text-align: center;
-  text-decoration: none;
-  display: inline;
-  font-size: 10px;
-  margin-right:-5px;
-  margin-top:-5px;
-}
-*/
-button:hover {
-	background-color: #003E7D;
-	transition-duration:0.2s;
-}
-button.nobutton:hover {
-	background-color: #6B0000;
-	transition-duration:0.2s;
-}
 body {
 font-family: "Helvetica";
 max-width: 1440px;
@@ -100,11 +74,14 @@ background:#f6f6f6;
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 2.4em;
 }
+h3 {
+  font-size: 1.3em;
+}
+
 h2 {
-	font-size: 1.2em;
-	color: rgb(70, 70, 70);
+	font-size: 1.1em;
 
 }
 body, html {
@@ -115,6 +92,7 @@ body, html {
 .bannerimage {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bus.jpg");
   height: 20%;
+  width: 100%;
 /* quelle bild https://www.stadt-zuerich.ch/vbz/de/index/fahrplan.html */
   background-position: center;
   background-repeat: no-repeat;

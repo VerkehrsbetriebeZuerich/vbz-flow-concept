@@ -26,8 +26,8 @@
 
 <div id='map'></div>
 <div id='console'>
-  <h1>Fahrgastzahlen VBZ 2018</h1>
-  <p>Datenherkunft: <a href='https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd'>Stadt Zürich Open Data:</a> Fahrgastzahlen VBZ</p>
+  <h3>Fahrgastzahlen VBZ 2018</h3>
+
   <div class='session'>
     <h2>Auslastung Fahrzeuge im Durchschnitt</h2>
     <div class='row colors'></div>
@@ -59,10 +59,14 @@
     </div>
 
     <div class='session' id='sliderbar'>
-  <h2>Stunde: <label id='active-hour'>12h</label></h2>
+  <h2>Stunde: <label id='active-hour'>12h - 13h</label></h2>
   <input id='slider' class='row' type='range' min='0' max='23' step='1' value='12' />
 </div>
   </div>
+  <p>Datenherkunft: <a href='https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd' target="_blank"'>Stadt Zürich Open Data</a></p>
+
+
+
 </div>
 
 
@@ -80,7 +84,7 @@
       container: 'map',
       center: [8.539261, 47.376166],
       zoom: 14,
-      minZoom: 12,
+      minZoom: 10,
       maxZoom: 16,
       style: 'mapbox://styles/bountan/cjv50ji2u02u61fqsyujklffl',
       maxBounds: [[8.411615, 47.326402], [8.664531, 47.449721]]
@@ -114,39 +118,51 @@ map.on('load', function() {
     },
     paint: {
         'line-offset': [
-        'interpolate', ['linear'], ['zoom'],
-        12, 2,
-        16, 15,
+        'interpolate', ['linear',], ['zoom'],
+        11, 1,
+        15, 15,
       ],
         'line-width': [
           'interpolate', ['linear'], ['zoom'],
-            12, ['/',   ['step',
+            11, ['/',   ['step',
                   ['get', 'occsum'],
-                  2, 0,
-                  4, 15,
-                  6, 150,
-                  10, 500,
-                  14, 1000,
-                  18
-                ], 18],
-            16, ['/', ['step',
+
+                  2, 20,
+                  10, 100,
+                  20, 500,
+                  30, 1500,
+                  40
+                ], 24],
+            13, ['/', ['step',
                   ['get', 'occsum'],
-                  2, 0,
-                  4, 15,
-                  6, 150,
-                  10, 500,
-                  14, 1000,
-                  18
-                ], 0.5],
+
+                  2, 20,
+                  10, 100,
+                  20, 500,
+                  30, 1500,
+                  40
+                ], 10],
+                15, ['/',   ['step',
+                      ['get', 'occsum'],
+                      1, 0,
+                      4, 15,
+                      6, 150,
+                      10, 500,
+                      15, 1000,
+                      20
+                    ], 0.8],
           ],
       'line-color': [
       'step',
       ['get', 'loadmean'],
-      '#99bcb6', 20,
-      '#d1d2b6', 40,
-      '#f2d3ad', 60,
-      '#e5b0ad', 80,
-      '#df748e'
+      '#2d8ac0', 12.5,
+      '#559783', 25,
+      '#add8a4', 37.5,
+      '#e4ea9a', 50,
+      '#fae08a', 62.5,
+      '#f9ae60', 75,
+      '#f26b44', 87.5,
+      '#d83d51'
       ],
     },
 
@@ -162,7 +178,7 @@ map.on('load', function() {
   map.setFilter('vbzjson', ['==', ['get', 'time'], hour]);
 
   // update text in the UI
-  document.getElementById('active-hour').innerText = hour +'h';
+  document.getElementById('active-hour').innerText = hour +'h - '+(hour+1)+"h";
 });
 
 map.addLayer({
