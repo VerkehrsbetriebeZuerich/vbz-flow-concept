@@ -25,14 +25,14 @@ a {
     position: absolute;
     float: left;
     width: 100%;
-    height: 80%;
+    height: 75%;
 }
 
 #headtext{
   max-width: 100%;
   padding:20px;
   background-color: white;
-  font-size:0.9em;
+  font-size:0.8em;
 }
 
 .paddingtop {
@@ -105,7 +105,7 @@ h2 {
 
 .bannerimage {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bus.jpg");
-  height: 10%;
+  height: 15%;
   width: 100%;
 /* quelle bild https://www.stadt-zuerich.ch/vbz/de/index/fahrplan.html */
   background-position: center;
