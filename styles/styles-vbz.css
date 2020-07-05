@@ -35,7 +35,9 @@ a {
   font-size:0.8em;
 }
 
-
+.paddingtop {
+  padding-top: 5px;
+}
 .filter-ctrl {
 position: absolute;
 top: 10px;

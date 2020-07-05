@@ -73,21 +73,19 @@ Es besteht kein Anspruch auf Vollständigkeit oder Gültigkeit der publizierten 
     </div>
 
     <div class='session' id='sliderbar'>
-  <h2>Stunde: <label id='active-hour'>12h - 13h</label></h2>
+<h2 class = 'paddingtop'>Stunde: <label id='active-hour' >12h - 13h</label></h2>
   <input id='slider' class='row' type='range' min='0' max='23' step='1' value='12' />
 </div>
   </div>
 
-  
+
   <div class='session'>
-    <h2>Day of the week</h2>
+    <h2>Wochentage</h2>
     <div class='row' id='filters'>
-      <input id='all' type='radio' name='toggle' value='all' checked='checked'>
-      <label for='all'>All</label>
       <input id='weekday' type='radio' name='toggle' value='weekday'>
-      <label for='weekday'>Weekday</label>
+      <label for='weekday'>Werktag</label>
       <input id='weekend' type='radio' name='toggle' value='weekend'>
-      <label for='weekend'>Weekend</label>
+      <label for='weekend'>Wochenende</label>
     </div>
   </div>
 
@@ -134,7 +132,7 @@ map.on('load', function() {
     type: 'line',
     source: {
       type: 'geojson',
-      //https://bountan.github.io/vbz-flow-concept/data/vbz.geojson
+      //     https://bountan.github.io/vbz-flow-concept/data/vbz.geojson
       data: 'https://bountan.github.io/vbz-flow-concept/data/vbz.geojson',
     },
     layout: {
@@ -207,17 +205,16 @@ map.on('load', function() {
 
 document.getElementById('filters').addEventListener('change', function(e) {
   var day = e.target.value;
+
   // update the map filter
-  if (day === 'all') {
-    filterDay = ['!=', ['string', ['get', 'Day']], 'placeholder'];
-  } else if (day === 'weekday') {
-    filterDay = ['match', ['get', 'Day'], ['Sat', 'Sun'], false, true];
+  if (day === 'weekday') {
+    filterday = 1;
   } else if (day === 'weekend') {
-    filterDay = ['match', ['get', 'Day'], ['Sat', 'Sun'], true, false];
+    filterday = 0;
   } else {
     console.log('error');
   }
-  map.setFilter('collisions', ['all', filterDay]);
+  map.setFilter('vbzjson', ['==', ['get', 'daytype'], filterday]);
 });
 
 
