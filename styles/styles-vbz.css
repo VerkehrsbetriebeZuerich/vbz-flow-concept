@@ -25,7 +25,7 @@ a {
     position: absolute;
     float: left;
     width: 100%;
-    height: 85%;
+    height: 80%;
 }
 
 #headtext{
@@ -105,7 +105,7 @@ h2 {
 
 .bannerimage {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bus.jpg");
-  height: 15%;
+  height: 10%;
   width: 100%;
 /* quelle bild https://www.stadt-zuerich.ch/vbz/de/index/fahrplan.html */
   background-position: center;
