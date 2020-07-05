@@ -22,12 +22,12 @@
   </div>
 
 <div id='headtext'>
-Diese Karte stellt die Benützung des Streckennetzes der VBZ and einem typischen Arbeitstag dar.
-Jeder planmässig von Tram und Bus der VBZ befahrene Streckenabschnitt wird richtungsgetrennt dargestellt ("Rechtsverkehr!").
+Diese Karte stellt die Nutzung des VBZ-Netzes and einem Tag dar.
+Jeder gefahrene Streckenabschnitt wird richtungsgetrennt dargestellt ("Rechtsverkehr").
 Die Strichfarbe stellt dar, wie voll die Fahrzeuge über die gesamte Stunde durschnittlich sind.
-Die Strichbreite stellt dar, wieviele Passagiere auf diesem Abschnitt unterwegs sind.
-Genauere Werte werden durch Anklicken angezeigt.
-Die Werte basieren auf punktuellen Messungen der VBZ, die extrapoliert wurden.
+Die Strichbreite stellt dar, wieviele Passagiere total auf diesem Abschnitt in dieser Stunde unterwegs sind.
+Genauere Werte werden durch Anklicken angezeigt. Per Rechtsklick in die Karte kann der Ansichtswinkel verändert werden.
+<br>Die Werte basieren auf punktuellen Messungen der VBZ, die extrapoliert wurden.
 Es besteht kein Anspruch auf Vollständigkeit oder Gültigkeit der publizierten Daten seitens der Autoren.
   <br><br>Datenherkunft: <a href='https://data.stadt-zuerich.ch/dataset/vbz_fahrgastzahlen_ogd' target="_blank">Stadt Zürich Open Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kontakt Autoren: <a href='mailto:ueli.isenschmid@gmail.com' target="_blank">Ueli Isenschmid</a>, <a href='https://www.linkedin.com/in/ueli-isenschmid/' target="_blank">Linkedin</a>
 
@@ -82,9 +82,9 @@ Es besteht kein Anspruch auf Vollständigkeit oder Gültigkeit der publizierten 
   <div class='session'>
     <h2>Wochentage</h2>
     <div class='row' id='filters'>
-      <input id='weekday' type='radio' name='toggle' value='weekday'>
+      <input id='weekday' type='radio' name='toggle' value=1>
       <label for='weekday'>Werktag</label>
-      <input id='weekend' type='radio' name='toggle' value='weekend'>
+      <input id='weekend' type='radio' name='toggle' value=0>
       <label for='weekend'>Wochenende</label>
     </div>
   </div>
@@ -124,8 +124,8 @@ Es besteht kein Anspruch auf Vollständigkeit oder Gültigkeit der publizierten 
 
 map.on('load', function() {
 
-
-
+  var filterHour = ['==', ['get', 'time'], 12];
+  var filterDay = ['==', ['get', 'daytype'], 1];
 
   map.addLayer({
     id: 'vbzjson',
@@ -188,7 +188,7 @@ map.on('load', function() {
       ],
     },
 
-    filter: ['==', ['get', 'time'], 12]
+'filter': ['all', filterHour, filterDay]
 
   });
 
@@ -196,28 +196,33 @@ map.on('load', function() {
   document.getElementById('slider').addEventListener('input', function(e) {
   var hour = parseInt(e.target.value);
 
-  // update the map
-  map.setFilter('vbzjson', ['==', ['get', 'time'], hour]);
-
+  filterHour = ["==", ['get', 'time'], hour]
+  console.log(hour, filterHour)
+  map.setFilter('vbzjson', ['all', filterHour, filterDay]
+  );
+  console.log('vbzjson', ['all', filterHour, filterDay])
   // update text in the UI
   document.getElementById('active-hour').innerText = hour +'h - '+(hour+1)+"h";
 });
 
+
+
+
 document.getElementById('filters').addEventListener('change', function(e) {
-  var day = e.target.value;
+  var day = parseInt(e.target.value);
+  console.log(day)
 
-  // update the map filter
-  if (day === 'weekday') {
-    filterday = 1;
-  } else if (day === 'weekend') {
-    filterday = 0;
-  } else {
-    console.log('error');
-  }
-  map.setFilter('vbzjson', ['==', ['get', 'daytype'], filterday]);
+  filterDay = ["==", ['get', 'daytype'], day]
+  map.setFilter('vbzjson', ['all', filterHour, filterDay]);
 });
-
-
+////////////////////////////////////////////////////////////////////
+/////////////////
+/////////////////
+/////////////////
+/////////////////
+/////////////////
+/////////////////
+/////////////////
 
 
 
