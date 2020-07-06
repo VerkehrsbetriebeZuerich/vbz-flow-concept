@@ -4,16 +4,12 @@
 <meta charset="utf-8">
 <title>Verkehrsflüsse VBZ</title>
 
-
-
 <!--- libraries -->
   <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
   <link rel="stylesheet" type="text/css" href="https://bountan.github.io/vbz-flow-concept/styles/styles-vbz.css">
 
 <body>
-
-
 
 <!--- banner-->
   <div class="bannerimage">
@@ -22,8 +18,9 @@
     </div>
   </div>
 
+<!-- introtext -->
 <div id='headtext'>
-Diese Karte stellt die Nutzung des VBZ-Netzes and einem Tag dar.
+Diese Karte stellt die Nutzung des VBZ-Netzes and einem Durchschnittstag dar.
 Jeder gefahrene Streckenabschnitt wird richtungsgetrennt dargestellt ("Rechtsverkehr").
 Die Strichfarbe stellt dar, wie voll die Fahrzeuge über die gesamte Stunde durschnittlich sind.
 Die Strichbreite stellt dar, wieviele Passagiere total auf diesem Abschnitt in dieser Stunde unterwegs sind.
@@ -35,15 +32,15 @@ Es besteht kein Anspruch auf Vollständigkeit oder Gültigkeit der publizierten 
 
   </div>
 
-
-
-
 <!--- map object-->
 
 <div id='map'></div>
+
+<!-- console controls -->
 <div id='console'>
   <h3>Fahrgastzahlen VBZ 2018</h3>
 
+<!-- legend -->
   <div class='session'>
     <h2>Auslastung Fahrzeuge im Durchschnitt</h2>
     <div class='row colors'></div>
@@ -74,13 +71,14 @@ Es besteht kein Anspruch auf Vollständigkeit oder Gültigkeit der publizierten 
       <div class='label vol'>1500+</div>
     </div>
 
+<!-- slider daytime -->
     <div class='session' id='sliderbar'>
 <h2 class = 'paddingtop'>Stunde: <label id='active-hour' >12h - 13h</label></h2>
   <input id='slider' class='row' type='range' min='0' max='23' step='1' value='12' />
 </div>
   </div>
 
-
+<!-- buttons weekday kind -->
   <div class='session'>
     <h2>Wochentage</h2>
     <div class='row' id='filters'>
@@ -93,16 +91,10 @@ Es besteht kein Anspruch auf Vollständigkeit oder Gültigkeit der publizierten 
 
 </div>
 
-
-
-
-
-
-
-
-<!-- map initialization -->
-
+<!-- map controls -->
 <script>
+
+// basemap from mapbox
     mapboxgl.accessToken = 'pk.eyJ1IjoiYm91bnRhbiIsImEiOiJpSXVpaU1BIn0.pzuLQeLdLb3bRoYeQNc9jA';
     var map = new mapboxgl.Map({
       container: 'map',
@@ -123,12 +115,15 @@ Es besteht kein Anspruch auf Vollständigkeit oder Gültigkeit der publizierten 
 
     map.addControl(new mapboxgl.FullscreenControl());
 
-
+// load map
 map.on('load', function() {
 
+// variables filter what to display
   var filterHour = ['==', ['get', 'time'], 12];
   var filterDay = ['==', ['get', 'daytype'], 1];
+  var daytext = "an einem Wochentag"
 
+// add sections of traffic layer
   map.addLayer({
     id: 'vbzjson',
     type: 'line',
@@ -140,6 +135,7 @@ map.on('load', function() {
     layout: {
       'line-cap':'round',
     },
+    //data dependent color and width of lines
     paint: {
         'line-offset': [
         'interpolate', ['linear',], ['zoom'],
@@ -189,30 +185,34 @@ map.on('load', function() {
       '#d83d51'
       ],
     },
-
+// initial filter
 'filter': ['all', filterHour, filterDay]
 
   });
 
-
+//listener for slider change
   document.getElementById('slider').addEventListener('input', function(e) {
   var hour = parseInt(e.target.value);
 
   filterHour = ["==", ['get', 'time'], hour]
-  console.log(hour, filterHour)
+
   map.setFilter('vbzjson', ['all', filterHour, filterDay]
   );
-  console.log('vbzjson', ['all', filterHour, filterDay])
+
   // update text in the UI
   document.getElementById('active-hour').innerText = hour +'h - '+(hour+1)+"h";
 });
 
 
-
+// listener for button change
 
 document.getElementById('filters').addEventListener('change', function(e) {
   var day = parseInt(e.target.value);
-  console.log(day)
+  if (day == 1){
+    daytext = "an einem Werktag"
+  } else {
+    daytext = "am Wochenende"
+  }
 
   filterDay = ["==", ['get', 'daytype'], day]
   map.setFilter('vbzjson', ['all', filterHour, filterDay]);
@@ -227,7 +227,7 @@ document.getElementById('filters').addEventListener('change', function(e) {
 /////////////////
 
 
-
+//layer haltestellen, pretty static layer
 map.addLayer({
   id: 'haltestellen',
   type: 'circle',
@@ -247,11 +247,11 @@ map.addLayer({
 }
 });
 
-/// popup sections
+/// popup on line sections
 map.on('click', 'vbzjson', function(e) {
 new mapboxgl.Popup()
 .setLngLat(e.lngLat)
-.setHTML("Von "+e.features[0].properties.name_start+" bis <br>"+e.features[0].properties.name_ziel+":<br><b>"+e.features[0].properties.occsum+" Passagiere<br>"+e.features[0].properties.loadmean+"% durchschnittliche Besetzung</b><br>in dieser Stunde")
+.setHTML("Von "+e.features[0].properties.name_start+"<br>bis "+e.features[0].properties.name_ziel+"<br><b>"+e.features[0].properties.occsum+" Passagiere<br>"+e.features[0].properties.loadmean+"% durchschnittliche Besetzung</b><br>in dieser Stunde "+daytext)
 .addTo(map);
 });
 
