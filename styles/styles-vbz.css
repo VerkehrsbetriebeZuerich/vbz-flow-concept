@@ -1,8 +1,5 @@
 @charset "utf-8";
 
-
-
-
 body, html {
     height: 100%;
     font-size:16px;
@@ -12,6 +9,8 @@ body, html {
     padding: 0px;
     background:#f6f6f6;
 }
+
+
 
 a {
   text-decoration: none;
@@ -102,4 +101,16 @@ h3 {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+}
+
+
+
+@media screen and (max-width: 700px) {
+    #console { width:20vw; }
+    body {font-size:10px; }
+}
+
+@media screen and (max-width: 800px) {
+    #console { width:20vw; }
+    body {font-size:11px; }
 }
