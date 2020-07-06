@@ -27,7 +27,7 @@ a {
 #console {
   position: absolute;
   padding-top: -10px;
-  width: 18%;
+  width: 250px;
   margin: 10px;
   padding: 20px;
   background-color: white;
@@ -51,6 +51,7 @@ a {
 }
 
 .session {
+  width: 100%;
   margin-bottom: 20px;
 }
 
