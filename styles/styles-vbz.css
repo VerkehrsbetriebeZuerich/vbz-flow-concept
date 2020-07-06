@@ -105,10 +105,16 @@ h3 {
 
 @media screen and (max-width: 700px) {
     #console { width:100px; }
-    body {font-size:10px; }
+    body {font-size:10px;
+          background-color: blue;
+
+        }
 }
 
 @media screen and (max-width: 800px) {
     #console { width:150px; }
-    body {font-size: 11px; }
+    body {font-size: 11px;
+      background-color: red;
+
+    } }
 }
