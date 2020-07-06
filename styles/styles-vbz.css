@@ -1,4 +1,25 @@
 @charset "utf-8";
+
+
+
+/* Media Queries: Tablet Landscape */
+@media screen and (max-width: 1060px) {
+    #console { width:100px; }
+    #secondary { width:30%; margin-left:3%;}
+}
+
+/* Media Queries: Tabled Portrait */
+@media screen and (max-width: 900px) {
+    #console { width:100px; }
+    body {font-size:10px}
+
+
+
+
+
+
+
+
 body, html {
     height: 100%;
     font-size:16px;
@@ -56,7 +77,7 @@ a {
 }
 
 .row {
-  height: 12px;
+  height: 10px;
   width: 100%;
 }
 
