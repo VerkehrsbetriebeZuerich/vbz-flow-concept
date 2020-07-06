@@ -217,15 +217,6 @@ document.getElementById('filters').addEventListener('change', function(e) {
   filterDay = ["==", ['get', 'daytype'], day]
   map.setFilter('vbzjson', ['all', filterHour, filterDay]);
 });
-////////////////////////////////////////////////////////////////////
-/////////////////
-/////////////////
-/////////////////
-/////////////////
-/////////////////
-/////////////////
-/////////////////
-
 
 //layer haltestellen, pretty static layer
 map.addLayer({
@@ -282,9 +273,6 @@ map.on('mouseleave', 'haltestellen', function() {
 map.getCanvas().style.cursor = '';
 });
 });
-
-
-
 
 </script>
 
