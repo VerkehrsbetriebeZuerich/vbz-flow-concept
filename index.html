@@ -129,13 +129,12 @@ map.on('load', function() {
     type: 'line',
     source: {
       type: 'geojson',
-      //     https://bountan.github.io/vbz-flow-concept/data/vbz.geojson
       data: 'https://bountan.github.io/vbz-flow-concept/data/vbz.geojson',
     },
     layout: {
       'line-cap':'round',
     },
-    
+
     //data dependent color and width of lines
     paint: {
         'line-offset': [
@@ -225,7 +224,6 @@ map.addLayer({
   type: 'circle',
   source: {
     type: 'geojson',
-    //https://bountan.github.io/vbz-flow-concept/data/haltestellen.geojson
     data: 'https://bountan.github.io/vbz-flow-concept/data/haltestellen.geojson'
     },
   paint: {
