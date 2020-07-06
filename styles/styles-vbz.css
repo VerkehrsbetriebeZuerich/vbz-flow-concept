@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
     #console { width:100px; }
     body {font-size:10px}
 
