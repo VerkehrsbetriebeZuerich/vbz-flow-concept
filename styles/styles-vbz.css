@@ -106,11 +106,11 @@ h3 {
 
 
 @media screen and (max-width: 700px) {
-    #console { width:20vw; }
+    #console { width:10vw; }
     body {font-size:10px; }
 }
 
 @media screen and (max-width: 800px) {
-    #console { width:20vw; }
+    #console { width:10vw; }
     body {font-size:11px; }
 }
