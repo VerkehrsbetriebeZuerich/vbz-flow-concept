@@ -6,8 +6,6 @@
     body {font-size:12px}
 }
 
-
-
 body, html {
     height: 100%;
     font-size:16px;
@@ -18,16 +16,6 @@ body, html {
     background:#f6f6f6;
 }
 
-/* Tablet Landscape */
-@media screen and (max-width: 1060px) {
-    #primary { width:67%; }
-    #secondary { width:30%; margin-left:3%;}
-}
-/* Tabled Portrait */
-@media screen and (max-width: 768px) {
-    #primary { width:100%; }
-    #secondary { width:100%; margin:0; border:none; }
-}
 a {
   text-decoration: none;
   color: #008fff;
@@ -87,18 +75,17 @@ a {
 width: 18%;
 }
 
+h1 {
 	font-size: 2.4em;
-}
-h3 {
-  font-size: 1em;
 }
 
 h2 {
 	font-size: 0.9em;
-
 }
 
-
+h3 {
+  font-size: 1em;
+}
 
 .bannerimage {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bus.jpg");
