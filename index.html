@@ -7,7 +7,7 @@
 <!--- libraries -->
   <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
-  <link rel="stylesheet" type="text/css" href="https://verkehrsbetriebezuerich.github.io/vbz-flow-concept/styles/styles-vbz.css">
+  <link rel="stylesheet" type="text/css" href="/styles/styles-vbz.css">
 </head>
 <body>
 
@@ -56,11 +56,11 @@ Es besteht kein Anspruch auf Vollständigkeit oder Gültigkeit der publizierten 
 
     <h2>Anzahl Fahrgäste Total</h2>
     <div class='row'style="margin-bottom: 30px">
-      <img class = 'label vol' src="https://bountan.github.io/vbz-flow-concept/images/vol1.png" alt="0-10">
-      <img class = 'label vol' src="https://bountan.github.io/vbz-flow-concept/images/vol2.png" alt="11-150">
-      <img class = 'label vol' src="https://bountan.github.io/vbz-flow-concept/images/vol3.png" alt="151-500">
-      <img class = 'label vol' src="https://bountan.github.io/vbz-flow-concept/images/vol4.png" alt="501-1000">
-      <img class = 'label vol' src="https://bountan.github.io/vbz-flow-concept/images/vol5.png" alt="1000+">
+      <img class = 'label vol' src="/images/vol1.png" alt="0-10">
+      <img class = 'label vol' src="/images/vol2.png" alt="11-150">
+      <img class = 'label vol' src="/images/vol3.png" alt="151-500">
+      <img class = 'label vol' src="/images/vol4.png" alt="501-1000">
+      <img class = 'label vol' src="/images/vol5.png" alt="1000+">
     </div>
 
     <div class='row' >
@@ -129,7 +129,7 @@ map.on('load', function() {
     type: 'line',
     source: {
       type: 'geojson',
-      data: 'https://bountan.github.io/vbz-flow-concept/data/vbz.geojson',
+      data: '/data/vbz.geojson',
     },
     layout: {
       'line-cap':'round',
@@ -224,7 +224,7 @@ map.addLayer({
   type: 'circle',
   source: {
     type: 'geojson',
-    data: 'https://bountan.github.io/vbz-flow-concept/data/haltestellen.geojson'
+    data: '/data/haltestellen.geojson'
     },
   paint: {
     'circle-color': '#888888',
